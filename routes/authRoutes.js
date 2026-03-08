@@ -53,7 +53,7 @@ const createDirectorProfileChangeNotifications = async ({ actorUser, changedFiel
 
 // Serves the login page.
 router.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../frontend/public/html/login.html"));
+  res.sendFile(path.join(__dirname, "../../frontend/public/login.html"));
 });
 
 // Authenticates user credentials and returns a JWT + safe user profile.

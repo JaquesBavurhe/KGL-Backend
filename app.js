@@ -83,7 +83,7 @@ app.use((req, res) => {
   if (wantsHtml) {
     return res
       .status(404)
-      .sendFile(path.join(__dirname, "../frontend/public/html/404.html"));
+      .sendFile(path.join(__dirname, "../frontend/public/404.html"));
   }
 
   return res.status(404).json({ error: "Route not found" });
