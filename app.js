@@ -72,6 +72,8 @@ app.use(cors({
 // Serve frontend static assets.
 app.use(express.static(path.join(__dirname, "../frontend/public")));
 
+app.get("/", (req, res) => res.send("Backend is live ✅"));
+
 // Mount Swagger documentation endpoints.
 registerSwagger(app);
 
