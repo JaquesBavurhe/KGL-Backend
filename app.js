@@ -38,7 +38,9 @@ const isOriginAllowed = (origin) => {
 app.locals.moment = moment;
 
 // Connect to MongoDB once at startup and log connection lifecycle events.
-mongoose.connect(URI);
+mongoose.connect(URI).catch((error) => {
+  console.error(`Initial MongoDB connection failed: ${error.message}`);
+});
 mongoose.connection 
   .once("open", () => {
     console.log("Mongoose connection open!!");
