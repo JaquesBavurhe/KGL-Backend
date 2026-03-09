@@ -40,6 +40,16 @@ router.get(
   },
 );
 
+// Direct HTML route guard for legacy/static links.
+router.get(
+  "/directorDashboard.html",
+  authenticateToken({ redirectOnFail: true }),
+  ensureDirector,
+  (req, res) => {
+    res.sendFile(path.join(__dirname, "../../frontend/public/directorDashboard.html"));
+  },
+);
+
 // Serves the manager dashboard page.
 router.get(
   "/dashboard/manager",
@@ -50,9 +60,31 @@ router.get(
   },
 );
 
+// Direct HTML route guard for legacy/static links.
+router.get(
+  "/managerDashboard.html",
+  authenticateToken({ redirectOnFail: true }),
+  ensureManager,
+  (req, res) => {
+    res.sendFile(path.join(__dirname, "../../frontend/public/managerDashboard.html"));
+  },
+);
+
 // Serves the sales agent dashboard page.
 router.get(
   "/dashboard/sales-agent",
+  authenticateToken({ redirectOnFail: true }),
+  ensureAgent,
+  (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../frontend/public/salesAgentDashboard.html"),
+    );
+  },
+);
+
+// Direct HTML route guard for legacy/static links.
+router.get(
+  "/salesAgentDashboard.html",
   authenticateToken({ redirectOnFail: true }),
   ensureAgent,
   (req, res) => {

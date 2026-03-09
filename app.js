@@ -68,11 +68,7 @@ app.use(cors({
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
 }));
 
-
-// Serve frontend static assets.
-app.use(express.static(path.join(__dirname, "../frontend/public")));
-
-app.get("/", (req, res) => res.send("Backend is live ✅"));
+app.get("/health", (req, res) => res.send("Backend is live"));
 
 // Mount Swagger documentation endpoints.
 registerSwagger(app);
@@ -84,6 +80,9 @@ app.use('/', authRoutes);
 app.use('/', dashRoutes);
 app.use('/', salesRoutes);
 app.use('/', ProcurementRoutes);
+
+// Serve frontend static assets after protected routes.
+app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 // Final 404 handler for unmatched routes.
 app.use((req, res) => {
@@ -105,4 +104,3 @@ app.listen(PORT, (err) => {
     console.log(`listening on port ${PORT}`);
   }
 });
-
